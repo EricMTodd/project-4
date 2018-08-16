@@ -36,6 +36,7 @@ OP = Original Post
 
 
 # Workload Breakdown:
+### Trello Board: https://trello.com/b/xFp2XG5b/full-crud-django-react
 1. Team Django:
     * Erica - Person B
     * Michael - Person A
