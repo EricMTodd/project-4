@@ -1,4 +1,7 @@
 # project-4
+# Project requirements:
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
 # Objective: 
 We will be creating a basic internet forum that will have threads and posts within those threads. Once this has been achieved, more features will be added as seen fit.
 
@@ -38,3 +41,10 @@ OP = Original Post
     * Patrick - Person 3
 3. Version Control: 
     * Eric - Person 1
+
+
+# ERD Diagrams
+| Thread |
+| ------ |
+| id | title | body | author | creation_date |
+| --- | --- | --- | --- | --- |
