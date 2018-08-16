@@ -45,10 +45,36 @@ OP = Original Post
 
 # ERD Diagrams
 
-### Thread:
+### Thread Model:
 | id | title | body | author | creation_date |
 | --- | --- | --- | --- | --- |
 
-### Post:
+### Post Model:
 | id | title | body | author | creation_date |
 | --- | --- | --- | --- | --- |
+
+
+# Routes architechture
+
+### Thread Routes:
+| ACTION | METHOD | NAME |
+| ------ |: ----- |: --- |
+| /threads/ | GET | index |
+| /threads/new | GET | new |
+| /threads/ | POST | create |
+| /threads/<int:id> | GET | show |
+| /threads/<int:id> | DELETE | delete |
+
+### "Post" Routes:
+| ACTION | METHOD | NAME |
+| ------ |: ----- |: --- |
+| /posts/ | GET | index |
+| /posts/new | GET | new |
+| /posts/ | POST | create |
+| /posts/<int:id> | GET | show |
+| /posts/<int:id>/edit | GET | edit |
+| /posts/<int:id> | PUT | update |
+
+
+# React Wireframe:
+![alt text](https://media.discordapp.net/attachments/479699783637008404/479756170651893770/image.jpg?width=405&height=540)
