@@ -1,4 +1,6 @@
 # project-4
+# Objective: 
+We will be creating a basic internet forum that will have threads and posts within those threads. Once this has been achieved, more features will be added as seen fit.
 
 # Discord Server: The War Room: https://discord.gg/2dSnwCN
 The link above is set to never expire in case you are accidentally removed from the server.
