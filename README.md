@@ -28,11 +28,11 @@ OP = Original Post
 
 
 # Workload Breakdown:
-Team Django:
+1. Team Django:
     * Erica - Person B
     * Michael - Person A
-Team React:
+2. Team React:
     * Ben - Person 2
     * Patrick - Person 3
-Version Control: 
+3. Version Control: 
     * Eric - Person 1
