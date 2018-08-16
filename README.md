@@ -1,6 +1,6 @@
 # project-4
 # Project requirements:
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+https://git.generalassemb.ly/WebDev-Connected-Classroom/Project-4/blob/master/README.md
 
 # Objective: 
 We will be creating a basic internet forum that will have threads and posts within those threads. Once this has been achieved, more features will be added as seen fit.
