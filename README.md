@@ -17,10 +17,10 @@ The link above is set to never expire in case you are accidentally removed from 
 # MVP:
 OP = Original Post
 1. Landing page containing OP's
-    a. Create OP
-    b. Delete OP
+    * Create OP
+    * Delete OP
 
 2. Comments within OP's
-    a. Create Comments
-    b. Delete Comments
-    c. Edit Comments
+    * Create Comments
+    * Delete Comments
+    * Edit Comments
