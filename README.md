@@ -57,7 +57,7 @@ OP = Original Post
 | --- | --- | --- | --- | --- |
 
 ### Post Model:
-| id | title | body | author | creation_date |
+| id | Thread.id | body | author | creation_date |
 | --- | --- | --- | --- | --- |
 
 
