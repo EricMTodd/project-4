@@ -1,5 +1,9 @@
 # project-4
 
+# Discord Server: The War Room: https://discord.gg/2dSnwCN
+The link above is set to never expire in case you are accidentally removed from the server.
+
+
 # GitHub workflow notes:
 1. ```git checkout -b <enter_subject_branch_name_here>``` This will create a new branch and switch to it, a production branch.
 2. Proceed with coding.
@@ -11,9 +15,6 @@
 8. ```git push``` This will allow you to update your production branch on the local repo and make merge requests.
 
 
-# Discord Server: The War Room: https://discord.gg/2dSnwCN
-The link above is set to never expire in case you are accidentally removed from the server.
-
 # MVP:
 OP = Original Post
 1. Landing page containing OP's
@@ -24,3 +25,14 @@ OP = Original Post
     * Create Comments
     * Delete Comments
     * Edit Comments
+
+
+# Workload Breakdown:
+Team Django:
+    * Erica - Person B
+    * Michael - Person A
+Team React:
+    * Ben - Person 2
+    * Patrick - Person 3
+Version Control: 
+    * Eric - Person 1
