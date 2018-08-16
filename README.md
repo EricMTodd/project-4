@@ -45,6 +45,10 @@ OP = Original Post
 
 # ERD Diagrams
 
-### Thread
+### Thread:
+| id | title | body | author | creation_date |
+| --- | --- | --- | --- | --- |
+
+### Post:
 | id | title | body | author | creation_date |
 | --- | --- | --- | --- | --- |
