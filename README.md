@@ -58,7 +58,7 @@ OP = Original Post
 
 ### Thread Routes:
 | ACTION | METHOD | NAME |
-| ------ |: ----- |: --- |
+| ------ | ----- | --- |
 | /threads/ | GET | index |
 | /threads/new | GET | new |
 | /threads/ | POST | create |
@@ -67,7 +67,7 @@ OP = Original Post
 
 ### "Post" Routes:
 | ACTION | METHOD | NAME |
-| ------ |: ----- |: --- |
+| ------ | ----- | --- |
 | /posts/ | GET | index |
 | /posts/new | GET | new |
 | /posts/ | POST | create |
