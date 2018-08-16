@@ -20,6 +20,9 @@ The link above is set to never expire in case you are accidentally removed from 
 8. ```git push``` This will allow you to update your production branch on the local repo and make merge requests.
 
 
+---
+
+
 # MVP:
 OP = Original Post
 1. Landing page containing OP's
@@ -41,6 +44,9 @@ OP = Original Post
     * Patrick - Person 3
 3. Version Control: 
     * Eric - Person 1
+
+
+---
 
 
 # ERD Diagrams
