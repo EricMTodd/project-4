@@ -44,7 +44,5 @@ OP = Original Post
 
 
 # ERD Diagrams
-| Thread |
-| ------ |
 | id | title | body | author | creation_date |
 | --- | --- | --- | --- | --- |
