@@ -15,6 +15,8 @@ class Post(models.Model):
     post_author = models.CharField(max_length=255)
     content = models.CharField(max_length=255)
     post_date = models.DateTimeField(auto_now_true=True)
+    thread_id = models.ForeignKey(
+        Thread, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
         return self.content
