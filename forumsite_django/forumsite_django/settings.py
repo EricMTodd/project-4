@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'srvvrs',
     'rest_framework',
-    'srvvrs.apps.SrvvrsConfig',
 ]
 
 MIDDLEWARE = [
