@@ -13,6 +13,7 @@ def thread_list(request):
     if request.method == "GET":
         thread = Thread.objects.all()
         serializer = ThreadSerializer(thread, many=True)
+        print(thread)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == "POST":

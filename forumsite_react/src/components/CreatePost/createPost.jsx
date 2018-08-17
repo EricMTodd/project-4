@@ -5,10 +5,9 @@ class CreatePost extends Component{
         super();
 
         this.state = {
-            title: "",
-            body: "",
-            author: "",
-            date: "",
+            post_content: "",
+            post_author: "",
+            post_date: "",
         }
     }
     updatePost = (e) => {
@@ -20,23 +19,17 @@ class CreatePost extends Component{
         return(
             <form onSubmit={this.props.addPost.bind(null, this.sate)}>
                 <label>
-                    Title:
-                    <input type="text" name="title" onChange={this.updatePost}/>
-                </label>
-                //^^^confirm title is not needed for posts
-                <label>
-                    Body:
-                    <input type="text" name="body" onChange={this.updatePost}/>
+                    Content:
+                    <input type="text" name="post_content" onChange={this.updatePost}/>
                 </label>
                 <label>
                     Author:
-                    <input type="text" name="author" onChange={this.updatePost}/>
+                    <input type="text" name="post_author" onChange={this.updatePost}/>
                 </label>
                 <label>
                     Date:
-                    <input type="text" name="date" onChange={this.updatePost}/>
+                    <input type="text" name="post_date" onChange={this.updatePost}/>
                 </label> 
-                //^^^^we probably need to make date an automatic thing... 
                 <input type="submit"/>
             </form>
         )

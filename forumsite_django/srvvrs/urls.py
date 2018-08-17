@@ -2,10 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.thread_list),
-    path('thread/<int:id>', views.thread_detail),
-    path('post/', views.post_list),
-    path('post/<int:id>', views.post_detail),
-
-
+    path('threads/', views.thread_list),
+    path('threads/<int:id>', views.thread_detail),
+    path('posts/', views.post_list),
+    path('posts/<int:id>', views.post_detail),
 ]
