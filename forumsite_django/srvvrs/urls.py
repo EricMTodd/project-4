@@ -1,8 +1,11 @@
 from django.conf.urls import path
-from srvvrs import views
+from . import views
 
 urlpatterns = [
-    path('srvvrs/', views.srvvrs_list),
-    path('srvvrs/<int:id>', views.srvvrs_detail)
+    path('', views.thread_list),
+    path('thread/<int:id>', views.thread_detail),
+    path('post/', views.post_list),
+    path('post/<int:id>', views.post_detail),
+
 
 ]
