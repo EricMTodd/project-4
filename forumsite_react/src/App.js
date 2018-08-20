@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainContainer from "./MainContainer";
-import { Route, Switch } from "react-router-dom";
+import CreateThread from "./components/CreateThread/createThread.jsx";
+import { Route, Switch, Link } from "react-router-dom";
 
 const My404 = () => {
   return (
@@ -16,7 +17,7 @@ class App extends Component {
     return (
       <div className="App">
        <Switch>
-         <Route exact path="/" component={MainContainer}/>
+         <Route path="/" component={MainContainer}/>
          <Route component={My404} />
        </Switch>
       </div>

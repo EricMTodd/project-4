@@ -18,7 +18,7 @@ class CreateThread extends Component{
     render(){
         console.log(this.props, 'this is props')
         return(
-            <form onSubmit={this.props.addThread.bind(null, this.sate)}>
+            <form onSubmit={this.props.addThread.bind(null, this.state)}>
                 <label>
                     Title:
                     <input type="text" name="thread_title" onChange={this.updateThread}/>

@@ -9,7 +9,6 @@ const Threads = (props) => {
     const threadsList = props.threads.map((thread, i) => {
         return (
     <div key = {thread.id}>
-    <h1>{thread.id}</h1>
       <Media>
         <Media body>
           <Media heading>
