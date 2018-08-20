@@ -7,12 +7,12 @@ class Thread(models.Model):
     thread_date = models.DateTimeField('date published')
 
     def __str__(self):
-        return self.title
+        return self.thread_title
 
 
 class Post(models.Model):
-    post_title = models.CharField(max_length=100)
-    post_author = models.CharField(max_length=255)
+    post_author = models.ForeignKey(
+        'auth.User', related_name='threads', on_delete=models.CASCADE)
     content = models.CharField(max_length=255)
     post_date = models.DateTimeField('date published')
     thread_id = models.ForeignKey(

@@ -1,91 +1,58 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
 from .models import Thread, Post
-from .serializers import ThreadSerializer, PostSerializer
+from .serializers import ThreadSerializer, PostSerializer, UserSerializer
+from django.contrib.auth.models import User
+from rest_framework import generics
+from rest_framework import permissions
+from .permissions import IsOwnerOrReadOnly
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework import renderers
+from rest_framework import viewsets
+from rest_framework.decorators import action
 
 
-# INDEX and NEW
-@csrf_exempt
-def thread_list(request):
-    if request.method == "GET":
-        thread = Thread.objects.all()
-        serializer = ThreadSerializer(thread, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-    elif request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = ThreadSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'threads': reverse('thread-list', request=request, format=format),
+        'posts': reverse('post-list', request=request, format=format)
+    })
 
 
-#DELETE, UPDATE, READ (DETAILS)
-@csrf_exempt
-def thread_detail(request, pk):
-    try:
-        thread = Thread.objects.get(pk=pk)
-    except Thread.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == "GET":
-        serializer = ThreadSerializer(thread)
-        return JsonResponse(serializer.data)
-
-    elif request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = ThreadSerializer(thread, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.error, status=400)
-
-    elif request.method == "DELETE":
-        thread.delete()
-        return HttpResponse(status=204)
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-# INDEX and NEW
-@csrf_exempt
-def post_list(request):
-    if request.method == "GET":
-        post = Post.objects.all()
-        serializer = PostSerializer(post, many=True)
-        return JsonResponse(serializer.data, safe=False)
+class ThreadViewSet(viewsets.ModelViewSet):
 
-    elif request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+    queryset = Thread.objects.all()
+    serializer_class = ThreadSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        thread = self.get_object()
+        return Response(thread)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
-#DELETE, UPDATE, READ (DETAILS)
-@csrf_exempt
-def post_detail(request, pk):
-    try:
-        post = Post.objects.get(pk=pk)
-    except Post.DoesNotExist:
-        return HttpResponse(status=404)
+class PostViewSet(viewsets.ModelViewSet):
 
-    if request.method == "GET":
-        serializer = PostSerializer(post)
-        return JsonResponse(serializer.data)
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
 
-    elif request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(post, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.error, status=400)
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        post = self.get_object()
+        return Response(post)
 
-    elif request.method == "DELETE":
-        post.delete()
-        return HttpResponse(status=204)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
