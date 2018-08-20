@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from 'reactstrap';
 
 class CreateThread extends Component{
     constructor(){
@@ -30,7 +31,7 @@ class CreateThread extends Component{
                     Date:
                     <input type="text" name="thread_date" onChange={this.updateThread}/>
                 </label> 
-                <input type="submit"/>
+                <Button type="submit" color="primary">Submit</Button>
             </form>
         )
     }

@@ -4,6 +4,7 @@ import CreatePost from "./components/CreatePost/createPost.jsx"
 import EditPost from "./components/EditPost/edit.jsx"
 import CreateThread from "./components/CreateThread/createThread.jsx"
 import Threads from "./components/Threads/threads.jsx"
+import Nav from "./components/Nav/nav.jsx"
 
 
 class MainContainer extends Component {
@@ -28,28 +29,22 @@ class MainContainer extends Component {
         }).catch((err)=>{
             console.log(err)
         }); 
-        console.log("this.state:", this.state)
         this.getThreads().then((response)=>{
-            console.log("response:", response)
             this.setState({
                 threads: response
             })
         }).catch((err)=>{
             console.log(err)
         }); 
-        console.log("this.state:", this.state)
     }
     getThreads = async() => {
         const threads = await fetch ("http://localhost:8000/threads", {
             method: "GET"
         });
-        console.log("threads:", threads)
         const threadsJson = await threads.json();
-        console.log("threadsJson:", threadsJson)
         return threadsJson
     }
     addThread = async (thread, e) =>{
-        console.log(thread, "this is thread")
         e.preventDefault();
         try { 
             const createThread = await fetch("http://localhost:8000/threads", {
@@ -71,11 +66,9 @@ class MainContainer extends Component {
             method: "GET"
         });
         const postsJson = await posts.json();
-        console.log("postsJson:", postsJson)
         return postsJson
     }
     addPost = async (post, e) =>{
-        console.log(post, "this is post")
         e.preventDefault();
         try { 
             const createPost = await fetch("http://localhost:8000/posts", {
@@ -163,14 +156,12 @@ class MainContainer extends Component {
         });
     }
     render(){
-        console.log("this.state:", this.state)
         return(
             <div>
-                <Posts posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal}/>
-                <CreatePost addPost={this.addPost}/>
-                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} movieToEdit={this.state.movieToEdit}/> : null}
-                <Threads threads = {this.state.threads}/>
-                <CreateThread addThread={this.addThread}/>
+                <Nav />
+                <Threads addThread={this.addThread} posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal} threads = {this.state.threads}/>
+                {/* <CreatePost addPost={this.addPost}/>
+                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} movieToEdit={this.state.movieToEdit}/> : null} */}
             </div>
         );
     }

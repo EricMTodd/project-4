@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 const My404 = () => {
   return (
     <div>
-        <h1>Your Doom is at Hand</h1>
+        <h1>404'd!</h1>
     </div>
   )
 }
