@@ -11,12 +11,11 @@ class Thread(models.Model):
 
 
 class Post(models.Model):
-    post_author = models.ForeignKey(
-        'auth.User', related_name='threads', on_delete=models.CASCADE)
+    post_author = models.CharField(max_length=100)
     content = models.CharField(max_length=255)
     post_date = models.DateTimeField('date published')
     thread_id = models.ForeignKey(
-        Thread, on_delete=models.CASCADE, related_name='posts')
+        Thread, on_delete=models.CASCADE, related_name='posts', default=1)
 
     def __str__(self):
         return self.content

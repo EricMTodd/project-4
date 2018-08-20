@@ -15,16 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url, include
-from rest_framework.routers import DefaultRouter
+from django.conf.urls import include
 from srvvrs import views
 
-router = DefaultRouter()
-router.register('threads', views.ThreadViewSet)
-router.register('posts', views.PostViewSet)
-router.register('users', views.UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('', include('srvvrs.urls')),
+    path('api-auth/', include('rest_framework.urls',
+                              namespace='rest_framework')),
 ]
