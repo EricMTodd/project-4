@@ -10,6 +10,7 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from django.views.generic.detail import DetailView
 
 
 @api_view(['GET'])

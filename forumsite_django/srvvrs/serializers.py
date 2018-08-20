@@ -18,19 +18,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ThreadSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Thread
-        fields = ('url', 'highlight', 'id', 'thread_title',
+        fields = ('url', 'id', 'thread_title',
                   'thread_author', 'thread_date',)
         thread_author = serializers.ReadOnlyField(
             source='thread_author.username')
-        highlight = serializers.HyperlinkedIdentityField(
-            view_name='thread-highlight', format='html')
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ('url', 'highlight', 'id', 'post_author',
+        fields = ('url', 'id', 'post_author',
                   'content', 'post_date', 'thread_id')
         post_author = serializers.ReadOnlyField(source='post_author.username')
-        highlight = serializers.HyperlinkedIdentityField(
-            view_name='post-highlight', format='html')
