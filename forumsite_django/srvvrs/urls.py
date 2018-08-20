@@ -11,7 +11,5 @@ urlpatterns = [
     path('threads/<int:id>', views.ThreadDetail.as_view()),
     path('posts/', views.PostList.as_view()),
     path('posts/<int:id>', views.PostDetail.as_view()),
-    path('users/', views.UserList.as_view()),
-    path('users/<int:id>', views.UserDetail.as_view()),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

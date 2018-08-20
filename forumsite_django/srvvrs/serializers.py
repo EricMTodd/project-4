@@ -7,7 +7,7 @@ class ThreadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Thread
-        fields = ('url', 'id', 'thread_title',
+        fields = ('id', 'thread_title',
                   'thread_author', 'thread_date', 'posts')
 
 
@@ -15,7 +15,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('url', 'id', 'post_author',
+        fields = ('id', 'post_author',
                   'content', 'post_date', 'thread_id')
 
 
@@ -28,4 +28,4 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username', 'posts', 'threads')
+        fields = ('id', 'username', 'posts', 'threads')
