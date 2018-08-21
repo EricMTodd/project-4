@@ -6,23 +6,17 @@ import { browserHistory } from 'react-router'
 
 
 class Threads extends Component {
-    handleClick = (showThread) => {
-        this.props.history.push({
-            pathname: "/show/" + showThread.id,
-            state: {threadDetails: showThread}
-        });
-    }
     render() {
-        const threadsList = this.props.threads.map((thread, i) => {
+        const threadsList = this.props.threads.map((thread, id) => {
             console.log("thread:", thread)
             return (
-        <div key = {thread.id} id = {thread.id}>
+        <div key = {thread.id}>
           <Media>
             <Media body>
               <Media heading>
               <Link to={{
             pathname: "/show/" + thread.id,
-            state: {threadDetails: thread.id}
+            state: {threadPotato: thread}
         }}><span>{thread.thread_title}</span></Link><br/>
               </Media>
             </Media>

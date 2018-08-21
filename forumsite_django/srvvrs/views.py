@@ -27,9 +27,9 @@ def thread_list(request):
 
 #DELETE, UPDATE, READ (DETAILS)
 @csrf_exempt
-def thread_detail(request, pk):
+def thread_detail(request, id):
     try:
-        thread = Thread.objects.get(pk=pk)
+        thread = Thread.objects.get(id=id)
     except Thread.DoesNotExist:
         return HttpResponse(status=404)
 
@@ -69,9 +69,9 @@ def post_list(request):
 
 #DELETE, UPDATE, READ (DETAILS)
 @csrf_exempt
-def post_detail(request, pk):
+def post_detail(request, id):
     try:
-        post = Post.objects.get(pk=pk)
+        post = Post.objects.get(id=id)
     except Post.DoesNotExist:
         return HttpResponse(status=404)
 
