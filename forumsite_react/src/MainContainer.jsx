@@ -16,6 +16,7 @@ class MainContainer extends Component {
 
         this.state = {
             posts: [],
+            inputValue: "",
             threads: [],
             editPostId: null,
             postToEdit: {
@@ -193,6 +194,16 @@ class MainContainer extends Component {
           }
         });
     }
+    updateInputValue = (e) => {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
+    handleSearch = (e) => {
+        e.preventDefault();
+        return this.state.inputValue
+
+    }
     render(){
         
         return(
@@ -203,7 +214,7 @@ class MainContainer extends Component {
                     <Route exact path="/home/" render ={(props) => {
                         return(
                             <div>
-                                <Threads {...props} threads = {this.state.threads} 
+                                <Threads {...props} threads = {this.state.threads} inputValue={this.state.inputValue} updateInputValue = {this.updateInputValue} handleSearch = {this.handleSearch}
                                  />
                             </div>
                         )
