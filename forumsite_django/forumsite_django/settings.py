@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'srvvrs',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'provider',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,8 @@ ROOT_URLCONF = 'forumsite_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,18 +71,35 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 WSGI_APPLICATION = 'forumsite_django.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'srvvrs',
+#         'USER': 'srvvrs7',
+#         'PASSWORD': 'srvvrs7',
+#         'HOST': 'localhost'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'srvvrs',
-        'USER': 'srvvrsuser',
-        'PASSWORD': 'srvvrs',
+        'USER': 'srvvrs7',
+        'PASSWORD': 'srvvrs7',
         'HOST': 'localhost'
     }
 }
