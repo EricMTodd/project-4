@@ -1,34 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 import { Media } from 'reactstrap'
 import ThreadDetails from '../ThreadsDetails/threadsDetails.jsx'
 import { Route, Switch, Link } from "react-router-dom"
 
 
 const Threads = (props) => {
-    console.log("threads.jsx props:", props)
-    const threadsList = props.threads.map((thread, i) => {
-        return (
-    <div key = {thread.id}>
-      <Media>
-        <Media body>
-          <Media heading>
-          <span>{thread.thread_title}</span><br/>
+       const threadsList = props.threads.map((thread, i) => {
+            console.log("thread:", thread)
+            return (
+        <div key = {thread.id}>
+          <Media>
+            <Media body>
+              <Media heading>
+              <li><span>{thread.thread_title}</span></li><br/>
+              </Media>
+            </Media>
           </Media>
-        </Media>
-      </Media>
-{/*                 
-                 { <button onClick={props.deleteThread.bind(null,thread.id)}> Delete </button>
-                <button onClick={props.showModal.bind(null,thread.id)}> Edit </button>  } 
-                 */}
-
-            </div> 
+{/*                     
+                     { <button onClick={props.deleteThread.bind(null,thread.id)}> Delete </button>
+                    <button onClick={props.showModal.bind(null,thread.id)}> Edit </button>  } 
+                     */}
+                </div> 
+            )
+        })
+        return (
+            <div>
+                <ul>
+                    {threadsList}
+                </ul>
+            </div>
         )
-    })
-    return (
-        <ul>
-            {threadsList}
-        </ul>
-    )
 }
 
 export default Threads

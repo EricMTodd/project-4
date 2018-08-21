@@ -6,6 +6,7 @@ import CreateThread from "./components/CreateThread/createThread.jsx"
 import Threads from "./components/Threads/threads.jsx"
 import Nav from "./components/Nav/nav.jsx"
 import { Route, Switch, Link } from "react-router-dom";
+import { Media } from 'reactstrap'
 
 
 class MainContainer extends Component {
@@ -169,7 +170,7 @@ class MainContainer extends Component {
                     <Route exact path="/home/" render ={(props) => {
                         return(
                             <div>
-                                <Threads {...props} posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal} threads = {this.state.threads} 
+                                <Threads {...props} findThreadId = {this.findThreadId} posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal} threads = {this.state.threads} 
                                  />
                             </div>
                         )
@@ -185,7 +186,18 @@ class MainContainer extends Component {
                          </div>
                      )
                     }}
-                    />    
+                    />  
+                    <Route exact path = "/show/" 
+                    render={(props) => {
+                     return (
+                         <div>
+                            <CreateThread {...props}
+                            addThread = {this.addThread}
+                            />
+                         </div>
+                     )
+                    }}
+                    />
                 {/* <CreatePost addPost={this.addPost}/>
                 {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} movieToEdit={this.state.movieToEdit}/> : null} */}
                 </div>
