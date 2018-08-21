@@ -19,8 +19,8 @@ class MainContainer extends Component {
             threads: [],
             editPostId: null,
             postToEdit: {
+                post_title: '',
                 post_content: ''
-            //to be changed
             }
         }
     }
@@ -54,7 +54,6 @@ class MainContainer extends Component {
         e.preventDefault();
         try { 
             const createThread = await fetch("http://localhost:8000/threads/", {
-            //TBD to change
                 method: "POST",
                 body: JSON.stringify(thread),
                 headers:{
@@ -110,16 +109,18 @@ class MainContainer extends Component {
     }
     addPost = async (post, e) =>{
         e.preventDefault();
+        console.log("post:", post)
         try { 
             const createPost = await fetch("http://localhost:8000/posts/", {
-            //TBD to change
                 method: "POST",
                 body: JSON.stringify(post),
                 headers:{
                     "Content-Type": "application/json"
                 }
             });
+            console.log("createPost:", createPost)
             const parsedResponse = await createPost.json();
+            console.log("parsedResponse:", parsedResponse)
             this.setState({posts: [...this.state.posts, parsedResponse]})
         } catch(err){
             console.log(err)
@@ -132,13 +133,12 @@ class MainContainer extends Component {
         try { 
 
             const deletePost = await fetch("http://localhost:8000/posts/" + id, {
-                //TBD to change
                 method: 'DELETE'
             });
 
-            const parsedResponse = await deletePost.json();
+            const parsedResponse = deletePost;
 
-            if(parsedResponse.status === 200){
+            if(parsedResponse.status === 204){
                 this.setState({posts: this.state.posts.filter((posts,i) => posts.id !== id)});
             } else {
                 console.log("There is a problem with delete")
@@ -171,8 +171,7 @@ class MainContainer extends Component {
 
             const editedPostArray = this.state.posts.map((post) => {
                 if(post.id === this.state.editPostId){
-                    post.post_content = parsedResponse.data.description;
-                    //^^^to be changed
+                    post.post_content = parsedResponse.post_content;
                 }
                 return post
             });
@@ -204,7 +203,7 @@ class MainContainer extends Component {
                     <Route exact path="/home/" render ={(props) => {
                         return(
                             <div>
-                                <Threads {...props} posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal} threads = {this.state.threads} 
+                                <Threads {...props} threads = {this.state.threads} 
                                  />
                             </div>
                         )
@@ -228,13 +227,16 @@ class MainContainer extends Component {
                             <ThreadsDetails {...props}
                             deleteThread = {this.deleteThread}
                             addThread = {this.addThread}
+                            addPost = {this.addPost}
+                            posts = {this.state.posts}
+                            deletePost={this.deletePost}
+                            showModal={this.showModal}
                             />
                          </div>
                      )
                     }}
                     />
-                {/* <CreatePost addPost={this.addPost}/>
-                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} movieToEdit={this.state.movieToEdit}/> : null} */}
+                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
                 </div>
             </div>
            

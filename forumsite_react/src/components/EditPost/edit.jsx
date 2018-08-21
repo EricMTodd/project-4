@@ -9,11 +9,11 @@ const EditPost = (props) =>  {
       <form onSubmit={props.closeAndEdit}>
         <label>
           Edit Post:
-          <input type="text" name="title" onChange={props.handleFormChange} value={props.movieToEdit.title}/>
+          <input type="text" name="post_author" onChange={props.handleFormChange} value={props.postToEdit.post_author}/>
         </label>
         <label>
           Edit Description:
-          <input type="text" name="description" onChange={props.handleFormChange} value={props.movieToEdit.description}/>
+          <input type="text" name="post_content" onChange={props.handleFormChange} value={props.postToEdit.post_content}/>
         </label>
         <input type='Submit'/>
       </form>

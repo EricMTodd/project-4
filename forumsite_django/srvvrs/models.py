@@ -16,4 +16,4 @@ class Post(models.Model):
         Thread, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
-        return self.content
+        return self.post_content
