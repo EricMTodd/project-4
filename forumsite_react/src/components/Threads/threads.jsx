@@ -16,11 +16,14 @@ class Threads extends Component {
         const threadsList = this.props.threads.map((thread, i) => {
             console.log("thread:", thread)
             return (
-        <div key = {thread.id}>
+        <div key = {thread.id} id = {thread.id}>
           <Media>
             <Media body>
               <Media heading>
-              <li onClick={this.handleClick.bind(this, this.showThread)}><span>{thread.thread_title}</span></li><br/>
+              <Link to={{
+            pathname: "/show/" + thread.id,
+            state: {threadDetails: thread.id}
+        }}><span>{thread.thread_title}</span></Link><br/>
               </Media>
             </Media>
           </Media>
