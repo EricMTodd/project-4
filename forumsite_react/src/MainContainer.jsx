@@ -4,6 +4,7 @@ import CreatePost from "./components/CreatePost/createPost.jsx"
 import EditPost from "./components/EditPost/edit.jsx"
 import CreateThread from "./components/CreateThread/createThread.jsx"
 import Threads from "./components/Threads/threads.jsx"
+import ThreadsDetails from "./components/ThreadsDetails/threadsDetails.jsx"
 import Nav from "./components/Nav/nav.jsx"
 import { Route, Switch, Link } from "react-router-dom";
 import { Media } from 'reactstrap'
@@ -18,8 +19,8 @@ class MainContainer extends Component {
             threads: [],
             editPostId: null,
             postToEdit: {
+                post_title: '',
                 post_content: ''
-            //to be changed
             }
         }
     }
@@ -43,7 +44,9 @@ class MainContainer extends Component {
         const threads = await fetch ("http://localhost:8000/threads/", {
             method: "GET"
         });
+        console.log("threads:", threads)
         const threadsJson = await threads.json();
+        console.log("threadsJson:", threadsJson)
         return threadsJson
     }
     addThread = async (thread, e) =>{
@@ -51,7 +54,6 @@ class MainContainer extends Component {
         e.preventDefault();
         try { 
             const createThread = await fetch("http://localhost:8000/threads/", {
-            //TBD to change
                 method: "POST",
                 body: JSON.stringify(thread),
                 headers:{
@@ -61,8 +63,40 @@ class MainContainer extends Component {
             console.log("this is created thread", createThread)
             const parsedResponse = await createThread.json();
             console.log("this is parsed response", parsedResponse)
-            this.setState({threads: [...this.state.threads, parsedResponse.data]})
+            this.setState({threads: [...this.state.threads, parsedResponse]})
+            this.props.history.push({
+                pathname:"/home/"
+            })
         } catch(err){
+            console.log(err)
+        }
+    }
+    deleteThread = async (id, e) => {
+        e.preventDefault();
+        console.log(id, "this is deleteThread id");
+        
+        try { 
+            const deleteThread = await fetch("http://localhost:8000/threads/" + id, {
+                method: 'DELETE',
+                body: JSON.stringify({"id": id}),
+                headers: {
+                  'Content-Type': 'application/json'
+            }});
+            console.log("STAGE 1")
+            console.log("deleteThread:", deleteThread)
+            const parsedResponse = deleteThread;
+            // console.log("parsedResponse:", parsedResponse)
+            console.log("STAGE 2")
+            if(parsedResponse.status === 204){
+                this.setState({threads: this.state.threads.filter((threads,i) => threads.id !== id)});
+                this.props.history.push({
+                    pathname:"/home/",
+                    state: {threadPotato: ""}
+                })
+            } else {
+                console.log("There is a problem with delete")
+            }
+        } catch(err) {
             console.log(err)
         }
     }
@@ -75,17 +109,19 @@ class MainContainer extends Component {
     }
     addPost = async (post, e) =>{
         e.preventDefault();
+        console.log("post:", post)
         try { 
             const createPost = await fetch("http://localhost:8000/posts/", {
-            //TBD to change
                 method: "POST",
                 body: JSON.stringify(post),
                 headers:{
                     "Content-Type": "application/json"
                 }
             });
+            console.log("createPost:", createPost)
             const parsedResponse = await createPost.json();
-            this.setState({posts: [...this.state.posts, parsedResponse.data]})
+            console.log("parsedResponse:", parsedResponse)
+            this.setState({posts: [...this.state.posts, parsedResponse]})
         } catch(err){
             console.log(err)
         }
@@ -97,13 +133,12 @@ class MainContainer extends Component {
         try { 
 
             const deletePost = await fetch("http://localhost:8000/posts/" + id, {
-                //TBD to change
                 method: 'DELETE'
             });
 
-            const parsedResponse = await deletePost.json();
+            const parsedResponse = deletePost;
 
-            if(parsedResponse.status === 200){
+            if(parsedResponse.status === 204){
                 this.setState({posts: this.state.posts.filter((posts,i) => posts.id !== id)});
             } else {
                 console.log("There is a problem with delete")
@@ -125,7 +160,6 @@ class MainContainer extends Component {
         e.preventDefault();
         try{
             const editResponse = await fetch('http://localhost:8000/posts/' + this.state.editPostId,{
-                //^^^^ to be changed
                 method: "PUT",
                 body: JSON.stringify(this.state.postToEdit),
                 headers:{
@@ -137,8 +171,7 @@ class MainContainer extends Component {
 
             const editedPostArray = this.state.posts.map((post) => {
                 if(post.id === this.state.editPostId){
-                    post.post_content = parsedResponse.data.description;
-                    //^^^to be changed
+                    post.post_content = parsedResponse.post_content;
                 }
                 return post
             });
@@ -170,7 +203,7 @@ class MainContainer extends Component {
                     <Route exact path="/home/" render ={(props) => {
                         return(
                             <div>
-                                <Threads {...props} findThreadId = {this.findThreadId} posts = {this.state.posts} deletePost={this.deletePost} showModal={this.showModal} threads = {this.state.threads} 
+                                <Threads {...props} threads = {this.state.threads} 
                                  />
                             </div>
                         )
@@ -187,19 +220,23 @@ class MainContainer extends Component {
                      )
                     }}
                     />  
-                    <Route exact path = "/show/" 
+                    <Route exact path = "/show/:id" 
                     render={(props) => {
                      return (
                          <div>
-                            <CreateThread {...props}
+                            <ThreadsDetails {...props}
+                            deleteThread = {this.deleteThread}
                             addThread = {this.addThread}
+                            addPost = {this.addPost}
+                            posts = {this.state.posts}
+                            deletePost={this.deletePost}
+                            showModal={this.showModal}
                             />
                          </div>
                      )
                     }}
                     />
-                {/* <CreatePost addPost={this.addPost}/>
-                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} movieToEdit={this.state.movieToEdit}/> : null} */}
+                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
                 </div>
             </div>
            

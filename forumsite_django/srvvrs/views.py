@@ -1,92 +1,90 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Thread, Post
-from .serializers import ThreadSerializer, PostSerializer
+from .serializers import ThreadSerializer, PostSerializer, UserSerializer
 
 
-# INDEX and NEW
-@csrf_exempt
-def thread_list(request):
-    if request.method == "GET":
-        thread = Thread.objects.all()
-        serializer = ThreadSerializer(thread, many=True)
-        print(thread)
-        return JsonResponse(serializer.data, safe=False)
+class ThreadList(APIView):
 
-    elif request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = ThreadSerializer(data=data)
+    def get(self, request, format=None):
+        threads = Thread.objects.all()
+        serializer = ThreadSerializer(threads, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = ThreadSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#DELETE, UPDATE, READ (DETAILS)
-@csrf_exempt
-def thread_detail(request, pk):
-    try:
-        thread = Thread.objects.get(pk=pk)
-    except Thread.DoesNotExist:
-        return HttpResponse(status=404)
+class ThreadDetail(APIView):
 
-    if request.method == "GET":
+    def get_object(self, id):
+        try:
+            return Thread.objects.get(id=id)
+        except Thread.DoesNotExist:
+            raise Http404
+
+    def get(self, request, id, format=None):
+        thread = self.get_object(id)
         serializer = ThreadSerializer(thread)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
-    elif request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = ThreadSerializer(thread, data=data)
+    def put(self, request, id, format=None):
+        thread = self.get_object(id)
+        serializer = ThreadSerializer(thread, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.error, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id, format=None):
+        thread = self.get_object(id)
         thread.delete()
-        return HttpResponse(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# INDEX and NEW
-@csrf_exempt
-def post_list(request):
-    if request.method == "GET":
-        post = Post.objects.all()
-        serializer = PostSerializer(post, many=True)
-        return JsonResponse(serializer.data, safe=False)
+class PostList(APIView):
 
-    elif request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(data=data)
+    def get(self, request, format=None):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#DELETE, UPDATE, READ (DETAILS)
-@csrf_exempt
-def post_detail(request, pk):
-    try:
-        post = Post.objects.get(pk=pk)
-    except Post.DoesNotExist:
-        return HttpResponse(status=404)
+class PostDetail(APIView):
 
-    if request.method == "GET":
+    def get_object(self, id):
+        try:
+            return Post.objects.get(id=id)
+        except Post.DoesNotExist:
+            raise Http404
+
+    def get(self, request, id, format=None):
+        post = self.get_object(id)
         serializer = PostSerializer(post)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
-    elif request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(post, data=data)
+    def put(self, request, id, format=None):
+        post = self.get_object(id)
+        serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.error, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id, format=None):
+        post = self.get_object(id)
         post.delete()
-        return HttpResponse(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)

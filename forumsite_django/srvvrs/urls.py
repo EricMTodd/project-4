@@ -1,9 +1,15 @@
 from django.urls import path
+from django.conf.urls import url, include
+from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework import renderers
 from . import views
+from rest_framework import renderers
+
 
 urlpatterns = [
-    path('threads/', views.thread_list),
-    path('threads/<int:id>', views.thread_detail),
-    path('posts/', views.post_list),
-    path('posts/<int:id>', views.post_detail),
+    path('threads/', views.ThreadList.as_view()),
+    path('threads/<int:id>', views.ThreadDetail.as_view()),
+    path('posts/', views.PostList.as_view()),
+    path('posts/<int:id>', views.PostDetail.as_view()),
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)

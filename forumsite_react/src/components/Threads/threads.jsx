@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { Media } from 'reactstrap'
 import ThreadDetails from '../ThreadsDetails/threadsDetails.jsx'
 import { Route, Switch, Link } from "react-router-dom"
+import { browserHistory } from 'react-router'
 
 
 const Threads = (props) => {
-       const threadsList = props.threads.map((thread, i) => {
+        const threadsList = props.threads.map((thread, id) => {
             console.log("thread:", thread)
             return (
         <div key = {thread.id}>
           <Media>
             <Media body>
               <Media heading>
-              <li><span>{thread.thread_title}</span></li><br/>
+              <Link to={{
+            pathname: "/show/" + thread.id,
+            state: {threadPotato: thread}
+        }}><span>{thread.thread_title}</span></Link><br/>
               </Media>
             </Media>
           </Media>
@@ -30,6 +34,8 @@ const Threads = (props) => {
                 </ul>
             </div>
         )
+    
 }
+
 
 export default Threads
