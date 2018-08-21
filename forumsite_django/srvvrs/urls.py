@@ -7,7 +7,7 @@ from rest_framework import renderers
 
 
 urlpatterns = [
-    path('', views.ThreadList.as_view()),
+    path('threads/', views.ThreadList.as_view()),
     path('threads/<int:id>', views.ThreadDetail.as_view()),
     path('posts/', views.PostList.as_view()),
     path('posts/<int:id>', views.PostDetail.as_view()),

@@ -5,9 +5,8 @@ import { Route, Switch, Link } from "react-router-dom"
 import { browserHistory } from 'react-router'
 
 
-class Threads extends Component {
-    render() {
-        const threadsList = this.props.threads.map((thread, id) => {
+const Threads = (props) => {
+        const threadsList = props.threads.map((thread, id) => {
             console.log("thread:", thread)
             return (
         <div key = {thread.id}>
@@ -35,7 +34,7 @@ class Threads extends Component {
                 </ul>
             </div>
         )
-    }
+    
 }
 
 

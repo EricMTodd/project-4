@@ -8,7 +8,7 @@ class ThreadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thread
         fields = ('id', 'thread_title',
-                  'thread_author', 'thread_date', 'posts')
+                  'thread_author')
 
 
 class PostSerializer(serializers.ModelSerializer):

@@ -44,7 +44,9 @@ class MainContainer extends Component {
         const threads = await fetch ("http://localhost:8000/threads/", {
             method: "GET"
         });
+        console.log("threads:", threads)
         const threadsJson = await threads.json();
+        console.log("threadsJson:", threadsJson)
         return threadsJson
     }
     addThread = async (thread, e) =>{
@@ -62,7 +64,10 @@ class MainContainer extends Component {
             console.log("this is created thread", createThread)
             const parsedResponse = await createThread.json();
             console.log("this is parsed response", parsedResponse)
-            this.setState({threads: [...this.state.threads, parsedResponse.data]})
+            this.setState({threads: [...this.state.threads, parsedResponse]})
+            this.props.history.push({
+                pathname:"/home/"
+            })
         } catch(err){
             console.log(err)
         }
@@ -78,12 +83,14 @@ class MainContainer extends Component {
                 headers: {
                   'Content-Type': 'application/json'
             }});
-
-            const parsedResponse = await deleteThread.json();
-            console.log("parsedResponse:", parsedResponse)
+            console.log("STAGE 1")
+            console.log("deleteThread:", deleteThread)
+            const parsedResponse = deleteThread;
+            // console.log("parsedResponse:", parsedResponse)
+            console.log("STAGE 2")
             if(parsedResponse.status === 204){
                 this.setState({threads: this.state.threads.filter((threads,i) => threads.id !== id)});
-                this.history.push({
+                this.props.history.push({
                     pathname:"/home/",
                     state: {threadPotato: ""}
                 })
@@ -113,7 +120,7 @@ class MainContainer extends Component {
                 }
             });
             const parsedResponse = await createPost.json();
-            this.setState({posts: [...this.state.posts, parsedResponse.data]})
+            this.setState({posts: [...this.state.posts, parsedResponse]})
         } catch(err){
             console.log(err)
         }
