@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router'
 
 class Threads extends Component {
     handleClick = (showThread) => {
-        browserHistory.push({
+        this.props.history.push({
             pathname: "/show/" + showThread.id,
             state: {threadDetails: showThread}
         });
@@ -34,7 +34,7 @@ class Threads extends Component {
         return (
             <div>
                 <ul>
-                    {this.threadsList}
+                    {threadsList}
                 </ul>
             </div>
         )
