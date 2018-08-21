@@ -7,8 +7,7 @@ class CreateThread extends Component{
 
         this.state = {
             thread_title: "",
-            thread_author: "",
-            thread_date: "",
+            thread_author: ""
         }
     }
     updateThread = (e) => {
@@ -26,10 +25,6 @@ class CreateThread extends Component{
                 <label>
                     Author:
                     <input type="text" name="thread_author" onChange={this.updateThread}/>
-                </label>
-                <label>
-                    Date:
-                    <input type="text" name="thread_date" onChange={this.updateThread}/>
                 </label> 
                 <Button type="submit" color="primary">Submit</Button>
             </form>
