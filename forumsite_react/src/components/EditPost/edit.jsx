@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 
 
 const EditPost = (props) =>  {
@@ -14,7 +15,8 @@ const EditPost = (props) =>  {
           Edit Description:
           <input type="text" name="post_content" onChange={props.handleFormChange} value={props.postToEdit.post_content}/>
         </label>
-        <input type='Submit'/>
+        <br/>
+        <Button color="primary" type="submit">Submit</Button>
       </form>
     </div>
     )

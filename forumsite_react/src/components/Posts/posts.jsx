@@ -11,23 +11,23 @@ const Posts = (props) => {
                 <Container>
                     <Row>
                         <Col>
-                        <ListGroup>
-                        <ListGroupItem>
-                            <div key = {post.id}>
-                                    <Media>
-                                        <Media left href="#">
+                            <ListGroup>
+                                <ListGroupItem>
+                                    <div key = {post.id}>
+                                        <Media>
+                                            <Media left href="#">
                                             <Media object src="https://i.imgur.com/00hmTnv.png" alt="" />
+                                            </Media>
+                                            <Media body>
+                                                {post.post_author}: {post.post_content}
+                                                <br/>
+                                                <Button color="danger" size="sm" onClick={props.deletePost.bind(null,post.id)}> Delete </Button>
+                                                <Button color="primary" size="sm" onClick={props.showModal.bind(null,post.id)}> Edit </Button>
+                                            </Media>
                                         </Media>
-                                        <Media body>
-                                            {post.post_author}: {post.post_content}
-                                            <br/>
-                                            <Button color="danger" size="sm" onClick={props.deletePost.bind(null,post.id)}> Delete </Button>
-                                            <Button color="primary" size="sm" onClick={props.showModal.bind(null,post.id)}> Edit </Button>
-                                        </Media>
-                                    </Media>
-                                </div>
-                        </ListGroupItem>
-                        </ListGroup>
+                                    </div>
+                                </ListGroupItem>
+                            </ListGroup>
                         </Col>
                     </Row>
                 </Container>

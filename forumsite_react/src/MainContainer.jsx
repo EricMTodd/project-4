@@ -147,7 +147,6 @@ class MainContainer extends Component {
     }
     showModal =(id, e) => {
         const postToEdit = this.state.posts.find((post) => post.id === id);
-        console.log(postToEdit, "postToEdit")
         this.setState({
             showEdit: true,
             editPostId: id,
