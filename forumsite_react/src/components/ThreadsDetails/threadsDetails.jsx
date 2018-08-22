@@ -11,7 +11,7 @@ class ThreadDetails extends Component {
         console.log("shownThread:", shownThread)
         return (
             <Container>
-                <Row  >
+                <Row>
                     <ListGroup>
                         <ListGroupItem>
                             <div className="ThreadDetails" >

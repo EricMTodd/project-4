@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Media, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap'
 import { Link } from "react-router-dom"
+import "./threads.css"
 
 const escapeRegex = (text) => {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -14,7 +15,7 @@ const Threads = (props) => {
             if (thread.thread_title.match(regex)) {
                 return (
                     <Container>
-                        <Row>
+                        <Row id="threadsRow" >
                             <Col>
                             <ListGroup>
                                 <ListGroupItem>
@@ -41,13 +42,11 @@ const Threads = (props) => {
 
         })
         return (
-            <div>
-            <form action="" onSubmit={props.handleSearch}>
+            <div id="searchBar" >
             <label>
                 Search Threads:
             </label>
                 <input type="text" value={props.inputValue} onChange={props.updateInputValue}/>
-            </form>
                 <ul>
                     {threadsList}
                 </ul>
