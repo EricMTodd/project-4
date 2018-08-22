@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const EditPost = (props) =>  {
-
   return (
     <div>
       <h4> Edit Post</h4>
@@ -18,7 +17,6 @@ const EditPost = (props) =>  {
         <input type='Submit'/>
       </form>
     </div>
-
     )
   }
 

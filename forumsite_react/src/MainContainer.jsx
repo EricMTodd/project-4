@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Posts from "./components/Posts/posts.jsx"
-import CreatePost from "./components/CreatePost/createPost.jsx"
 import EditPost from "./components/EditPost/edit.jsx"
 import CreateThread from "./components/CreateThread/createThread.jsx"
 import Threads from "./components/Threads/threads.jsx"
 import ThreadsDetails from "./components/ThreadsDetails/threadsDetails.jsx"
 import Nav from "./components/Nav/nav.jsx"
-import { Route, Switch, Link } from "react-router-dom";
-import { Media } from 'reactstrap'
+import { Route } from "react-router-dom";
 
 
 class MainContainer extends Component {

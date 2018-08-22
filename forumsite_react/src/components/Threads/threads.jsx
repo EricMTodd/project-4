@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Media } from 'reactstrap'
+import { Media, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap'
 import { Link } from "react-router-dom"
 
 const escapeRegex = (text) => {
@@ -13,18 +13,29 @@ const Threads = (props) => {
         const threadsList = props.threads.map((thread, id) => {
             if (thread.thread_title.match(regex)) {
                 return (
-                    <div key = {thread.id}>
-                      <Media>
-                        <Media body>
-                          <Media heading>
-                          <Link to={{
-                        pathname: "/show/" + thread.id,
-                        state: {threadPotato: thread}
-                    }}><span>{thread.thread_title}</span></Link><br/>
-                          </Media>
-                        </Media>
-                      </Media>
-                            </div> 
+                    <Container>
+                        <Row>
+                            <Col>
+                            <ListGroup>
+                                <ListGroupItem>
+                                        <div key = {thread.id}>
+                                            <Media>
+                                                <Media body>
+                                                <Media heading>
+                                                <Link to={{
+                                                pathname: "/show/" + thread.id,
+                                                state: {threadPotato: thread}
+                                            }}><span>{thread.thread_title}</span></Link><br/>
+                                                </Media>
+                                                </Media>
+                                            </Media>
+                                        </div>
+                                    </ListGroupItem>
+                                </ListGroup>
+                            </Col>
+                        </Row>
+                    </Container>
+
                         )
             }
 
@@ -32,8 +43,10 @@ const Threads = (props) => {
         return (
             <div>
             <form action="" onSubmit={props.handleSearch}>
+            <label>
+                Search Threads:
+            </label>
                 <input type="text" value={props.inputValue} onChange={props.updateInputValue}/>
-                {/* <input type="submit" value="submit"/> */}
             </form>
                 <ul>
                     {threadsList}
