@@ -44,6 +44,9 @@ const Threads = (props) => {
             <Container>
                 <Row id="threadsContainer" >
                     <Col>
+                    <div id="fireEmblem" >
+                        <img src="http://www.pngall.com/wp-content/uploads/2016/05/Fire-Free-PNG-Image.gif" alt=""/>
+                    </div>
                     <h1 id="welcomeTag" >Welcome, SRVVRS!</h1>
                         <div id="searchBar" >
                             <label>
