@@ -239,11 +239,11 @@ class MainContainer extends Component {
                             deletePost={this.deletePost}
                             showModal={this.showModal}
                             />
+                            {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
                          </div>
                      )
                     }}
                     />
-                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
                 </div>
             </div>
            
