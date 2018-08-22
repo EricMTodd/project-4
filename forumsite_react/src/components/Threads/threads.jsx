@@ -16,7 +16,7 @@ const Threads = (props) => {
                 return (
                     <Container>
                         <Row id="threadsRow" >
-                            <Col>
+                            <Col  >
                             <ListGroup>
                                 <ListGroupItem>
                                         <div key = {thread.id}>
@@ -41,17 +41,24 @@ const Threads = (props) => {
 
         })
         return (
-            <div id="searchBar" >
-            <h1 id="welcomeTag" >Welcome, SRVVRS!</h1>
-            <label>
-                Search Threads:
-            </label>
-                <input type="text" value={props.inputValue} onChange={props.updateInputValue}/>
-                <h3 id="threadsTag" >Threads</h3>
-                <ul>
-                    {threadsList}
-                </ul>
-            </div>
+            <Container>
+                <Row id="threadsContainer" >
+                    <Col>
+                    <h1 id="welcomeTag" >Welcome, SRVVRS!</h1>
+                        <div id="searchBar" >
+                            <label>
+                                Search Threads:
+                            </label>
+                                <input type="text" value={props.inputValue} onChange={props.updateInputValue}/>
+                                <h3 id="threadsTag" >Threads</h3>
+                                <ul id="threadsUl" >
+                                    {threadsList}
+                                </ul>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+
         )
     
 }
