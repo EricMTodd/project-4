@@ -145,9 +145,6 @@ class MainContainer extends Component {
             console.log(err)
         }
     }
-    editPost = (e) => {
-        const postToEdit = this.state.posts.find((post) => post.id === id);
-    }
     showModal =(id, e) => {
         const postToEdit = this.state.posts.find((post) => post.id === id);
         this.setState({
@@ -241,14 +238,12 @@ class MainContainer extends Component {
                             posts = {this.state.posts}
                             deletePost={this.deletePost}
                             showModal={this.showModal}
-                            closeAndEdit={this.closeAndEdit}
-                            handleFormChange={this.handleFormChange}
-                            postToEdit={this.state.postToEdit}
                             />
                          </div>
                      )
                     }}
                     />
+                {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
                 </div>
             </div>
            
