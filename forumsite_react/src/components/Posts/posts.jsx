@@ -2,6 +2,7 @@ import React from "react";
 import { Button, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap';
 import { Media } from 'reactstrap';
 import "./posts.css"
+import EditPost from "../EditPost/edit.jsx"
 
 
 const Posts = (props) => {
@@ -22,8 +23,8 @@ const Posts = (props) => {
                                             <Media body>
                                                 {post.post_author}: {post.post_content}
                                                 <br/>
-                                                <Button color="danger" size="sm" onClick={props.deletePost.bind(null,post.id)}> Delete </Button>
-                                                <Button color="primary" size="sm" onClick={props.showModal.bind(null,post.id)}> Edit </Button>
+                                                <Button color="danger" size="sm" onClick={props.deletePost.bind(null,post.id)}> Delete </Button>       
+                                                <EditPost post={post} closeAndEdit={props.closeAndEdit} handleFormChange={props.handleFormChange} postToEdit={props.postToEdit}/> 
                                             </Media>
                                         </Media>
                                     </div>

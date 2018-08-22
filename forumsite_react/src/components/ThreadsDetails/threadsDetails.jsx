@@ -6,6 +6,7 @@ import "./threadsDetails.css"
 
 
 class ThreadDetails extends Component {
+
     render() {
         const shownThread = this.props.location.state.threadPotato
         console.log("shownThread:", shownThread)
@@ -26,7 +27,7 @@ class ThreadDetails extends Component {
                         <h3 id="commentHead" >Make a comment on this thread</h3>
                             <CreatePost threadId = {shownThread.id} addPost = {this.props.addPost} />
                             <div id="postContainer" >
-                                <Posts threadId = {shownThread.id} deletePost={this.props.deletePost} posts = {this.props.posts} showModal={this.props.showModal} />
+                                <Posts threadId = {shownThread.id} deletePost={this.props.deletePost} posts = {this.props.posts} showModal={this.props.showModal} closeAndEdit={this.props.closeAndEdit} handleFormChange={this.props.handleFormChange} postToEdit={this.props.postToEdit}/>
                             </div>
                         </ListGroupItem>
                     </ListGroup>

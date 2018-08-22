@@ -38,7 +38,7 @@ class EditPost extends Component {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="primary" size="sm" onClick={props.showModal.bind(null,post.id)}> Jim's Modal </Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
