@@ -31,7 +31,7 @@ class CreatePost extends Component{
                             </Col>
                             <Col>
                                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                    <Input type="text" placeholder="Content" name="post_content" onChange={this.updatePost} />
+                                    <Input type="textarea" placeholder="Content" name="post_content" onChange={this.updatePost} />
                                 </FormGroup>
                             </Col>
                             <Col>

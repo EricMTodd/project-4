@@ -19,7 +19,7 @@ class CreateThread extends Component{
         return(
             <form onSubmit={this.props.addThread.bind(null, this.state)}>
                 <label>
-                    Title:
+                    Topic:
                     <input type="text" name="thread_title" onChange={this.updateThread}/>
                 </label>
                 <label>

@@ -10,12 +10,12 @@ const EditPost = (props) => {
           <h4> Edit Post</h4>
             <form onSubmit={props.closeAndEdit}>
               <label>
-                Edit Post:
+                Edit Author:
                 <input type="text" name="post_author" onChange={props.handleFormChange} value={props.postToEdit.post_author}/>
               </label>
               <label>
-                Edit Description:
-                <input type="text" name="post_content" onChange={props.handleFormChange} value={props.postToEdit.post_content}/>
+                Edit Content:
+                <input type="textarea" name="post_content" onChange={props.handleFormChange} value={props.postToEdit.post_content}/>
               </label>
               <br/>
               <Button color="primary" type="submit">Submit</Button>
