@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap';
 import CreatePost from "../CreatePost/createPost.jsx"
 import Posts from "../Posts/posts.jsx"
+import "./threadsDetails.css"
 
 
 class ThreadDetails extends Component {
@@ -10,8 +11,7 @@ class ThreadDetails extends Component {
         console.log("shownThread:", shownThread)
         return (
             <Container>
-                <Row >
-
+                <Row  >
                     <ListGroup>
                         <ListGroupItem>
                             <div className="ThreadDetails" >
@@ -23,7 +23,7 @@ class ThreadDetails extends Component {
                             </div>
                         </ListGroupItem>
                         <ListGroupItem>
-                        <h4>Comment on a thread</h4>
+                        <h3 id="commentHead" >Comment on a thread</h3>
                             <CreatePost threadId = {shownThread.id} addPost = {this.props.addPost} />
                             <Posts threadId = {shownThread.id} deletePost={this.props.deletePost} posts = {this.props.posts} showModal={this.props.showModal} />
                         </ListGroupItem>
