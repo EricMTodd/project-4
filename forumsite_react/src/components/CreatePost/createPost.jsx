@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import "./createPost.css"
 
 
 class CreatePost extends Component{
@@ -21,20 +22,24 @@ class CreatePost extends Component{
         return(
             <div>
                 <Container>
-                    <Row>
-                        <Col xs="auto">
-                            <Form inline onSubmit={this.props.addPost.bind(null, this.state)} >
+                    <Row id="makeAPost">
+                        <Form inline onSubmit={this.props.addPost.bind(null, this.state)} >
+                            <Col sm="auto">
                                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                    <Label className="mr-sm-2">Author</Label>
-                                    <Input type="text" name="post_author" onChange={this.updatePost} />
+                                    <Input type="text" placeholder="Author" name="post_author" onChange={this.updatePost} />
                                 </FormGroup>
+                            </Col>
+                            <Col>
                                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                    <Label className="mr-sm-2">Content</Label>
-                                    <Input type="text" name="post_content" onChange={this.updatePost} />
+                                    <Input type="text" placeholder="Content" name="post_content" onChange={this.updatePost} />
                                 </FormGroup>
-                                <Button color="primary" type="submit">Submit</Button>
-                            </Form>
-                        </Col>
+                            </Col>
+                            <Col>
+                                <FormGroup id="formButton" className="mb-2 mr-sm-2 mb-sm-0">    
+                                    <Button color="primary" type="submit">Submit</Button>
+                                </FormGroup>
+                            </Col>    
+                        </Form>
                     </Row>
                 </Container>
             </div>

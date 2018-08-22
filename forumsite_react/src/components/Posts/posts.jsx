@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap';
 import { Media } from 'reactstrap';
+import "./posts.css"
 
 
 const Posts = (props) => {
@@ -9,7 +10,7 @@ const Posts = (props) => {
         if (post.thread_id === props.threadId) {
             return (
                 <Container>
-                    <Row>
+                    <Row id="postDetails" >
                         <Col>
                             <ListGroup>
                                 <ListGroupItem>

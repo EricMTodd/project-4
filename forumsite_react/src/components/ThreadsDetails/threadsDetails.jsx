@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Button, ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap';
+import { Button, ListGroup, ListGroupItem, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import CreatePost from "../CreatePost/createPost.jsx"
 import Posts from "../Posts/posts.jsx"
+import "./threadsDetails.css"
 
 
 class ThreadDetails extends Component {
@@ -10,23 +11,26 @@ class ThreadDetails extends Component {
         console.log("shownThread:", shownThread)
         return (
             <Container>
-                <ListGroup>
-                    <ListGroupItem>
-                        <div className="ThreadDetails" >
-                            <h1>{shownThread.thread_title}</h1>
-                            <h4>{shownThread.thread_author}</h4>
-                            <Button size="sm" color="danger" onClick={this.props.deleteThread.bind(null, shownThread.id)}>Delete</Button>
-                            <br/>
-                            <br/>
-                        </div>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                    <h2>Posts</h2>
-                    <h5>Make a post</h5>
-                        <CreatePost threadId = {shownThread.id} addPost = {this.props.addPost} />
-                        <Posts threadId = {shownThread.id} deletePost={this.props.deletePost} posts = {this.props.posts} showModal={this.props.showModal} />
-                    </ListGroupItem>
-                </ListGroup>
+                <Row >
+                    <ListGroup>
+                        <ListGroupItem>
+                            <div className="ThreadDetails" >
+                                <h1>{shownThread.thread_title}</h1>
+                                <h6>{shownThread.thread_author}</h6>
+                                <Button size="sm" color="danger" onClick={this.props.deleteThread.bind(null, shownThread.id)}>Delete</Button>
+                                <br/>
+                                <br/>
+                            </div>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                        <h3 id="commentHead" >Make a comment on this thread</h3>
+                            <CreatePost threadId = {shownThread.id} addPost = {this.props.addPost} />
+                            <div id="postContainer" >
+                                <Posts threadId = {shownThread.id} deletePost={this.props.deletePost} posts = {this.props.posts} showModal={this.props.showModal} />
+                            </div>
+                        </ListGroupItem>
+                    </ListGroup>
+                </Row>
             </Container>
         )
     }
