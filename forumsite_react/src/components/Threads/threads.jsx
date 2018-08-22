@@ -23,7 +23,7 @@ const Threads = (props) => {
                                             <Media>
                                                 <Media body>
                                                 <Media heading>
-                                                <Link to={{
+                                                <Link class="Link" to={{
                                                 pathname: "/show/" + thread.id,
                                                 state: {threadPotato: thread}
                                             }}><span>{thread.thread_title}</span></Link><br/>
@@ -36,17 +36,18 @@ const Threads = (props) => {
                             </Col>
                         </Row>
                     </Container>
-
                         )
             }
 
         })
         return (
             <div id="searchBar" >
+            <h1 id="welcomeTag" >Welcome, SRVVRS!</h1>
             <label>
                 Search Threads:
             </label>
                 <input type="text" value={props.inputValue} onChange={props.updateInputValue}/>
+                <h3 id="threadsTag" >Threads</h3>
                 <ul>
                     {threadsList}
                 </ul>

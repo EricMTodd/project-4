@@ -1,6 +1,26 @@
 #threadsRow {
-    margin: 12px auto;
+    margin: 24px auto;
 }
 #searchBar {
     margin: 12px auto;
+}
+.Link {
+    color: black !important;
+    text-decoration: none;
+}
+#welcomeTag {
+    margin: 12px auto;
+    padding: 5px;
+    border: 2px solid black;
+    background-color: red;
+    color: White;
+    width: 90%;
+}
+#threadsTag {
+    margin: 12px auto;
+    padding: 5px;
+    border: 2px solid black;
+    background-color: red;
+    color: White;
+    width: 70%;
 }
