@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -82,10 +83,10 @@ WSGI_APPLICATION = 'forumsite_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'srvvrs',
-        'USER': 'srvvrs7',
-        'PASSWORD': 'srvvrs7',
-        'HOST': 'localhost'
+        'NAME': 'deqt0i2c9h2v13',
+        'USER': 'mpjszgfcyhqcth',
+        'PASSWORD': '6d428136d38269146deaa5e975a621c732b466f0118027cf1204cd8f1c9f524f',
+        'HOST': 'ec2-107-22-221-60.compute-1.amazonaws.com',
     }
 }
 
@@ -133,6 +134,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_DIRS = [
+                    os.path.join(BASE_DIR, 'build/static'),
+                    ]
+
+DIRS: [
+            os.path.join(BASE_DIR, 'build')
+        ]

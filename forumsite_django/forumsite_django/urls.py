@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
 from srvvrs import views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('', include('srvvrs.urls')),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework')),
+    re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
